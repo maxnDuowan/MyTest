@@ -1,25 +1,4 @@
-#include <time.h> 
-#include <algorithm>
-#include "AnchorAlgoIf.h"
-#include "UserWatchedInterface.h"
-#include "UserRecommendedInterface.h"
 
-#define DURING_ONE_DAY 60 * 60 * 24
-#define DURING_ONE_HOUR  60 * 60
-#define SCORE_TOP_COUNTER_DEFAULT 1
-#define GETLIST_RETRY_THRESHOLD 3
-#define GETLIST_RETRY_INTERVAL  10
-#define REDIS_STATUS_READY_HOUR 7
-
-AnchorAlgoIf::AnchorAlgoIf(int argc, char **argv)
-: m_rcProxyS2SName("yycf_rs_user_rcproxy_d")
-, m_filterS2SName("yycf_rs_vlfilter_d")
-, m_videoListS2SName("yycf_rs_videolist_reader_d")
-, m_configName("yycf_rs_algo_anchorcf_d")
-, m_scoreTopCounter(SCORE_TOP_COUNTER_DEFAULT)
-, m_simUsingCounter(10)
-, m_simScore(0.7)
-, m_simTablePrefix("sim-")
 , m_scoreTablePrefix("ufo-")
 , m_status(0)
 , m_statfiltered()
